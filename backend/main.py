@@ -6,6 +6,7 @@ from sqlalchemy.orm import Session
 from .database import engine, Base, get_db
 from .models import Interaction
 from .agent import process_chat
+from fastapi.middleware.cors import CORSMiddleware
 
 # 1. Sabse pehle FastAPI app define karein
 app = FastAPI(title="AI-First CRM HCP Module")
@@ -13,7 +14,12 @@ app = FastAPI(title="AI-First CRM HCP Module")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], 
+    allow_origins=[
+        "https://fastapi-react-hcp-crm.vercel.app",
+        "http://localhost:5173",
+        "*"
+    ], 
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )

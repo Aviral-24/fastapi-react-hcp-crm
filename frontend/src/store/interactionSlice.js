@@ -5,7 +5,8 @@ const initialState = {
     hcp_name: '',
     interaction_type: 'Meeting',
     date: new Date().toISOString().split('T')[0],
-    time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    // Time format fixed for HTML input compatibility (HH:mm in 24-hour format)
+    time: new Date().toTimeString().slice(0, 5),
     topics: '',
     sentiment: '',
     materials_shared: []
