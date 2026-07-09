@@ -19,10 +19,10 @@ export default function ChatInterface() {
 
     try {
       // Call FastAPI Backend
-      const response = await axios.post('http://127.0.0.1:8000/chat', {
-        message: userMsg,
-        thread_id: 'react-user-session-1'
-      });
+const response = await axios.post('https://fastapi-react-hcp-crm.onrender.com/chat', {
+  message: userMsg,
+  thread_id: 'react-user-session-1'
+});
 
       // Update Chat
       dispatch(addMessage({ role: 'ai', content: response.data.response }));
