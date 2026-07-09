@@ -7,28 +7,25 @@ from .database import engine, Base, get_db
 from .models import Interaction
 from .agent import process_chat
 
-
 app = FastAPI(title="AI-First CRM HCP Module")
 
-# 2. CORS Middleware (FIXED)
+# --- BULLETPROOF CORS SETTING ---
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://fastapi-react-hcp-crm.vercel.app", 
-        "http://localhost:5173"                      
-    ], 
-    allow_credentials=True,
+    allow_origins=["*"],         # Ab yeh har website ko allow karega
+    allow_credentials=False,     # Isko False karna sabse zaroori tha
     allow_methods=["*"],
     allow_headers=["*"],
 )
+# --------------------------------
 
-
+# 3. Database tables create karein
 try:
     Base.metadata.create_all(bind=engine)
 except Exception:
     pass
 
-
+# 4. Endpoints define karein
 class ChatRequest(BaseModel):
     message: str
     thread_id: str = "default-thread"
