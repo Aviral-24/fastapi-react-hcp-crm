@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+langchain
+langchain-groq
+langgraph
+pydantic
+python-dotenv
+sqlalchemy
+pymysql       # MySQL connection ke liye
+# psycopg2    # Agar Postgres use karna chahte hain toh ise uncomment karei

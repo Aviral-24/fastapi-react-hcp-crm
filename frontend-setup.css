@@ -1,0 +1,16 @@
+/* Google Fonts se Inter import karein */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Global body pe apply karein */
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f6fa;
+    color: #333333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Forms aur Inputs mein default font same rakhne ke liye */
+input, textarea, button, select {
+    font-family: 'Inter', sans-serif;
+}
