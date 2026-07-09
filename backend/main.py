@@ -18,7 +18,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 # 3. Database tables create karein
-Base.metadata.create_all(bind=engine)
+try:
+    Base.metadata.create_all(bind=engine)
+except Exception:
+    pass
 
 # 4. Endpoints define karein
 class ChatRequest(BaseModel):
