@@ -4,23 +4,21 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-# 1. Fetch URL from Render
+# 1. URL fetch karein
 raw_url = os.getenv("DATABASE_URL", "")
 
-# --- ULTIMATE FIX: URL ko force-clean karein ---
-# Agar URL ke end mein koi bhi ?ssl_disabled ya kuch aur juda hai, 
-# toh yeh code usko kaat kar URL ko bilkul pure bana dega.
+# 2. URL Force-Clean (Agar purana ?ssl_disabled juda ho toh use hatayein)
 if "?" in raw_url:
     DATABASE_URL = raw_url.split("?")[0]
 else:
     DATABASE_URL = raw_url
 
-# 2. Force SSL without checking certificate (Aiven bypass)
+# 3. Aiven Bypass SSL Context
 ssl_context = ssl.create_default_context()
 ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
 
-# 3. Apply Engine
+# 4. Engine with strict SSL dict
 engine = create_engine(
     DATABASE_URL,
     connect_args={"ssl": ssl_context}
